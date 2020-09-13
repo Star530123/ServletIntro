@@ -9,5 +9,7 @@
 	<form action="">
 		<input type="submit" value="back to home page"/>
 	</form>
+	<p>
+		線上人數: <%=request.getAttribute("count")%> 人</p>
 </body>
 </html>

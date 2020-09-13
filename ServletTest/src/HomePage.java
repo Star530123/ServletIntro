@@ -39,6 +39,8 @@ public class HomePage extends HttpServlet {
 		   ) {
 			request.setAttribute("name", "аи╙Ы");
 			request.getSession().setAttribute("login", true);
+			System.out.println(HomePageSessionListener.getCount());
+			request.setAttribute("count",HomePageSessionListener.getCount());
 			request.getRequestDispatcher("/WEB-INF/jsp/Hello.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("html/index.html").include(request, response);
