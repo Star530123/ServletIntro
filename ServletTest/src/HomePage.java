@@ -22,18 +22,23 @@ public class HomePage extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+			System.out.println("----------------Log out, Back to HomePage----------------");
+			request.getSession().setAttribute("login", false);
 			response.sendRedirect("/ServletTest");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("Send UserName and password~~~~~~~~~~~~~~~~");
 		response.setContentType("text/html;charset=UTF-8");
 		String password = request.getParameter("password");
 		String userName = request.getParameter("userName");
 		PrintWriter pw = response.getWriter();
 		if ( (password.equals("123") && userName.equals("SIMON")) 
+				|| (boolean) request.getSession().getAttribute("login") 
 		   ) {
 			request.setAttribute("name", "аи╙Ы");
+			request.getSession().setAttribute("login", true);
 			request.getRequestDispatcher("/WEB-INF/jsp/Hello.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("html/index.html").include(request, response);
